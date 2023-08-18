@@ -454,14 +454,19 @@ malsim_actual_f = function(test_data,dat_row){
   
   output1_matching_rct_and_2020$clin_inc_0_36500 = output1_matching_rct_and_2020$n_detect_730_3650
   output2_matching_rct_and_sched$clin_inc_0_36500 = output2_matching_rct_and_sched$n_detect_730_3650
+
+  output1_matching_rct_and_2020$n_clin_inc_0_36500 = output1_matching_rct_and_2020$n_inc_clinical_0_36500
+  output2_matching_rct_and_sched$n_clin_inc_0_36500 = output2_matching_rct_and_sched$n_inc_clinical_0_36500
   
   return(data.frame(timestep = output1_matching_rct_and_2020$timestep,
                     
                     prev_match = output1_matching_rct_and_2020$pv_730_3650,
                     clin_match = output1_matching_rct_and_2020$clin_inc_0_36500,
+                    n_clin_match = output1_matching_rct_and_2020$n_clin_inc_0_36500,
                     
                     prev_scheduled = output2_matching_rct_and_sched$pv_730_3650,
-                    clin_scheduled = output2_matching_rct_and_sched$clin_inc_0_36500
+                    clin_scheduled = output2_matching_rct_and_sched$clin_inc_0_36500,
+                    n_clin_scheduled = output2_matching_rct_and_sched$n_clin_inc_0_36500
                     
   ))
 }
@@ -473,7 +478,7 @@ malsim_actual_f = function(test_data,dat_row){
 test1 = list() ## create an object store model outputs in
 check1 = matrix(nrow=nrow(dt2),ncol=3,data = NA) ## create a data.frame to store delivery of nets in for checks
 
-for(i in 1:nrow(dt)){
+for(i in 92:nrow(dt)){
   test1[[i]] = malsim_actual_f(dt2,dat_row = i)
   
   bednet_events_scheduled = data.frame(
@@ -492,7 +497,7 @@ for(i in 1:nrow(dt)){
 
 par(mfrow=c(3,4))
 par(mar=c(3,3,2,1))
-for(i in 1){
+for(i in 1:12){
   site_cluster = i
   plot(test1[[site_cluster]]$prev_match ~ test1[[site_cluster]]$timestep,pch="",ylim=c(0,1),
        main = print(dt2$cluster[i]))
@@ -517,5 +522,5 @@ check1 = as.data.frame(check1)
 colnames(check1) = c("trial net days","scheduled 2020 days","delivered 2020 days")
 
 ## store these results in simulations folder
-saveRDS(test1, file="simulations/median_outputs_cluster_order.RData")
-saveRDS(check1, file="simulations/scheduled_delivered_nets_2020.RData")
+saveRDS(test1, file="simulations/median_outputs_cluster_orderv1.RData")
+saveRDS(check1, file="simulations/scheduled_delivered_nets_2020v1.RData")

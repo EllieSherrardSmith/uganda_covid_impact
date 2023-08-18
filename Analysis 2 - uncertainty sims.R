@@ -243,14 +243,19 @@ malsim_actual_f = function(test_data, ## global dataset (dt2)
   
   output1_matching_rct_and_2020$clin_inc_0_36500 = output1_matching_rct_and_2020$n_detect_730_3650
   output2_matching_rct_and_sched$clin_inc_0_36500 = output2_matching_rct_and_sched$n_detect_730_3650
+
+  output1_matching_rct_and_2020$n_clin_inc_0_36500 = output1_matching_rct_and_2020$n_inc_clinical_0_36500
+  output2_matching_rct_and_sched$n_clin_inc_0_36500 = output2_matching_rct_and_sched$n_inc_clinical_0_36500
   
   return(data.frame(timestep = output1_matching_rct_and_2020$timestep,
                     
                     prev_match = output1_matching_rct_and_2020$pv_730_3650,
                     clin_match = output1_matching_rct_and_2020$clin_inc_0_36500,
+                    n_clin_match = output1_matching_rct_and_2020$n_clin_inc_0_36500,
                     
                     prev_scheduled = output2_matching_rct_and_sched$pv_730_3650,
-                    clin_scheduled = output2_matching_rct_and_sched$clin_inc_0_36500
+                    clin_scheduled = output2_matching_rct_and_sched$clin_inc_0_36500,
+                    n_clin_scheduled = output2_matching_rct_and_sched$n_clin_inc_0_36500
                     
   ))
 }

@@ -298,3 +298,8 @@ polygon(c(6*365, 9*365,
           9*365, 6*365),
         c(0.6,0.6,0.7,0.7),border=NA,col = adegenet::transp("blue",0.4))
 
+par(xpd=NA,cex = 1.11)
+
+text(x = -3670, y = 1.2,"(B)")
+text(x = 300, y = 1.2,"(C)")
+text(x = -3670, y = 3.1,"(A)")
